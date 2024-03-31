@@ -1,0 +1,11 @@
+syntax = "v1"
+
+import "user/user.api"
+
+info (
+	title:  "code-storm"
+	desc:   "code-storm gateway"
+	author: "Blizzard"
+	email:  "blizzardzhang@icloud.com"
+)
+
