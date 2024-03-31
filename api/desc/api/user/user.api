@@ -8,22 +8,31 @@ info(
     version: "type version here"
 )
 
+type (
+    loginRequest {
+        Username string
+        password string
+    }
 
-type request{
-}
-
-type response{
-}
-
+    loginResp {
+        Status string `json:"status"`
+        CurrentAuthority string `json:"currentAuthority"`
+        Id int64 `json:"id"`
+        UserName string `json:"userName"`
+        AccessToken string `json:"token"`
+        AccessExpire int64 `json:"accessExpire"`
+        RefreshAfter int64 `json:"refreshAfter"`
+    }
+)
 
 @server(
-    group:      user
+    group: user
     prefix:     /api/user
 )
 service storm-api {
-    @handler GetUser // TODO: set handler name and delete this comment
-    get /id/:userId (request) returns (response)
-
-    @handler CreateUser // TODO: set handler name and delete this comment
-    post /create (request)
+    @handler Login // TODO: set handler name and delete this comment
+    post /login (loginRequest) returns (loginResp)
 }
+
+
+

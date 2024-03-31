@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package userclient;
+
+option go_package = "./userclient";
+
+message LoginReq {
+  string username = 1;
+  string password = 2;
+}
+
+message loginResp {
+  string status = 1;
+  string currentAuthority = 2;
+  int64 id = 3;
+  string userName = 4;
+  string AccessToken = 5;
+  int64 AccessExpire = 6;
+  int64 RefreshAfter = 7;
+}
+
+
+//user start
+service UserService {
+
+  rpc Login(LoginReq) returns(loginResp);
+
+}
