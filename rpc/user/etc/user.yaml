@@ -4,3 +4,10 @@ Etcd:
   Hosts:
   - 159.75.183.42:2379
   Key: user.rpc
+
+
+Mysql:
+  Datasource: root:root@tcp(159.75.183.42:23306)/code-storm?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+Cache:
+  - Host: 159.75.183.42:26379

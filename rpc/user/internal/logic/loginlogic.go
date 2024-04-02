@@ -24,7 +24,18 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(in *userclient.LoginReq) (*userclient.LoginResp, error) {
-	// todo: add your logic here and delete this line
+	r, err := l.svcCtx.UserModel.FindByAccountAndPwd(l.ctx, in.Username, in.Password)
+	if err != nil {
+		return nil, err
+	}
 
-	return &userclient.LoginResp{}, nil
+	return &userclient.LoginResp{
+		UserName:         r.Account,
+		Status:           "ok",
+		AccessToken:      "",
+		AccessExpire:     0,
+		RefreshAfter:     0,
+		CurrentAuthority: "admin",
+		Id:               r.Id,
+	}, nil
 }
