@@ -9,6 +9,12 @@ UserRpc:
       - 159.75.183.42:2379
     Key: user.rpc
 
+#sys rpc
+SysRpc:
+  Etcd:
+    Hosts:
+      - 159.75.183.42:2379
+    Key: sys.rpc
 
 
 Auth:

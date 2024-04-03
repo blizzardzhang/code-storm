@@ -1,17 +1,17 @@
 syntax = "v1"
 
 info(
-    title: "type title here"
-    desc: "type desc here"
-    author: "type author here"
-    email: "type email here"
-    version: "type version here"
+    title: "user service api"
+    desc: "user service api"
+    author: "Blizzard"
+    email: "blizzardzhang@icloud.com"
+    version: "0.0.1"
 )
 
 type (
     loginRequest {
-        Username string
-        password string
+        Username string `json:"username"`
+        password string `json:"password"`
     }
 
     loginResp {

@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package sysclient;
+option go_package = "./sysclient";
+
+//client start
+message AddClientReq {
+  string name = 1;
+  string remark = 2;
+  string clientId = 3;
+  string clientSecret = 4;
+  string clientKey = 5;
+  string additionalInfo = 6;
+  string grantType = 7;
+  int64 expireIn = 8;
+  int64 refreshAfter = 9;
+}
+message AddClientResp {
+  string data = 1;
+}
+
+message ClientInfoReq{
+  string id = 1;
+}
+message ClientInfoResp{
+  string id = 1;
+  string name = 2;
+  string remark = 3;
+  string clientId = 4;
+  string clientSecret = 5;
+  string clientKey = 6;
+  string additionalInfo = 7;
+  string grantType = 8;
+  int64 expireIn = 9;
+  int64 refreshAfter = 10;
+  int64 status = 11;
+  int64 isDeleted = 12;
+}
+
+message ListClientReq{
+  int64 current = 1;
+  int64 pageSize = 2;
+  string name = 3;
+}
+message ListClientResp{
+  int64 total = 1;
+  int64 pageSize = 2;
+  int64 current = 3;
+  int64 totalPage = 4;
+  repeated ClientInfoResp list = 5;
+}
+
+message UpdateClientReq{
+  string id = 1;
+  string name = 2;
+  string remark = 3;
+  int64 status = 4;
+}
+message UpdateClientResp{
+  string data = 1;
+}
+
+message DeleteClientReq{
+  repeated string ids = 1;
+}
+message DeleteClientResp{
+  string data = 1;
+}
+//client end
+service ClientService {
+  rpc ClientAdd(AddClientReq) returns (AddClientResp);
+  rpc ClientInfo(ClientInfoReq) returns (ClientInfoResp);
+  rpc ClientList(ListClientReq) returns (ListClientResp);
+  rpc ClientUpdate(UpdateClientReq) returns (UpdateClientResp);
+  rpc ClientDelete(DeleteClientReq) returns (DeleteClientResp);
+}
+
+//goctl rpc protoc sys.proto --go_out=. --go-grpc_out=. --zrpc_out=. -m

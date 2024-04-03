@@ -1,10 +1,9 @@
 package logic
 
 import (
-	"context"
-
 	"code-storm/rpc/user/internal/svc"
 	"code-storm/rpc/user/userclient"
+	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -38,4 +37,18 @@ func (l *LoginLogic) Login(in *userclient.LoginReq) (*userclient.LoginResp, erro
 		CurrentAuthority: "admin",
 		Id:               r.Id,
 	}, nil
+	/*var user usermodel.User
+	err := l.svcCtx.DB.Take(&user, "account = ? and password = ?", in.Username, in.Password).Error
+	if err != nil {
+		return nil, errors.New("登录失败:" + err.Error())
+	}
+	return &userclient.LoginResp{
+		UserName:         user.Account,
+		Status:           "ok",
+		AccessToken:      "",
+		AccessExpire:     0,
+		RefreshAfter:     0,
+		CurrentAuthority: "admin",
+		Id:               int64(user.ID),
+	}, nil*/
 }

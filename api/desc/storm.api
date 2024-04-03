@@ -1,6 +1,7 @@
 syntax = "v1"
 
 import "user/user.api"
+import "sys/client.api"
 
 info (
 	title:  "code-storm"
@@ -9,3 +10,4 @@ info (
 	email:  "blizzardzhang@icloud.com"
 )
 
+//goctl api go -api storm.api -dir ../

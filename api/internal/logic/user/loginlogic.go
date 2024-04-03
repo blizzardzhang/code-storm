@@ -25,7 +25,6 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResp, err error) {
-	// todo 登录逻辑
 	res, err := l.svcCtx.UserService.Login(l.ctx, &userclient.LoginReq{
 		Username: req.Username,
 		Password: req.Password,

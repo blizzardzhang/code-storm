@@ -9,11 +9,15 @@ import (
 type ServiceContext struct {
 	Config    config.Config
 	UserModel usermodel.StormUserModel
+	//DB *gorm.DB
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
+	mysql := sqlx.NewMysql(c.Mysql.Datasource)
+	//db := enter.InitGorm(c.Mysql.Datasource)
 	return &ServiceContext{
 		Config:    c,
-		UserModel: usermodel.NewStormUserModel(sqlx.NewMysql(c.Mysql.Datasource), c.Cache),
+		UserModel: usermodel.NewStormUserModel(mysql, c.Cache),
+		//DB: db,
 	}
 }
