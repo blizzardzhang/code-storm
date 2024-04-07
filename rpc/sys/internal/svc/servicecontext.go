@@ -1,20 +1,22 @@
 package svc
 
 import (
-	"code-storm/common/enter"
 	"code-storm/rpc/sys/internal/config"
-	"gorm.io/gorm"
+	"code-storm/rpc/user/ent"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type ServiceContext struct {
 	Config config.Config
-	//ClientModel sysmodel.StormClientModel
-	DB *gorm.DB
+	DB     *ent.Client
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	//mysql := sqlx.NewMysql(c.Mysql.Datasource)
-	db := enter.InitGorm(c.Mysql.Datasource)
+	db := ent.NewClient(
+		ent.Log(logx.Info), // logger
+		ent.Driver(c.DatabaseConf.NewNoCacheDriver()),
+		ent.Debug(), // debug mode
+	)
 	return &ServiceContext{
 		Config: c,
 		//ClientModel: sysmodel.NewStormClientModel(mysql, c.Cache),

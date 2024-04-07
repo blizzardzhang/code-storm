@@ -26,3 +26,8 @@ func (s *UserServiceServer) Login(ctx context.Context, in *userclient.LoginReq) 
 	l := logic.NewLoginLogic(ctx, s.svcCtx)
 	return l.Login(in)
 }
+
+func (s *UserServiceServer) GetUserList(ctx context.Context, in *userclient.UserListReq) (*userclient.UserListResp, error) {
+	l := logic.NewGetUserListLogic(ctx, s.svcCtx)
+	return l.GetUserList(in)
+}

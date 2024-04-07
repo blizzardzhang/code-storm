@@ -1,7 +1,6 @@
 package clientservicelogic
 
 import (
-	"code-storm/rpc/model/sysmodel"
 	"context"
 
 	"code-storm/rpc/sys/internal/svc"
@@ -25,17 +24,5 @@ func NewClientUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Clie
 }
 
 func (l *ClientUpdateLogic) ClientUpdate(in *sysclient.UpdateClientReq) (*sysclient.UpdateClientResp, error) {
-	tx := l.svcCtx.DB.Save(&sysmodel.Client{
-		Id:     in.Id,
-		Name:   in.Name,
-		Remark: in.Remark,
-		Status: in.Status,
-	})
-	if tx.Error != nil {
-		return nil, nil
-	}
-
-	return &sysclient.UpdateClientResp{
-		Data: "update success",
-	}, nil
+	return nil, nil
 }

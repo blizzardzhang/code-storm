@@ -1,23 +1,29 @@
 package svc
 
 import (
-	"code-storm/rpc/model/usermodel"
+	"code-storm/rpc/sys/client/clientservice"
+	"code-storm/rpc/user/ent"
 	"code-storm/rpc/user/internal/config"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
+	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/zrpc"
 )
 
 type ServiceContext struct {
-	Config    config.Config
-	UserModel usermodel.StormUserModel
-	//DB *gorm.DB
+	Config config.Config
+	DB     *ent.Client
+
+	ClientService clientservice.ClientService
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	mysql := sqlx.NewMysql(c.Mysql.Datasource)
-	//db := enter.InitGorm(c.Mysql.Datasource)
+	db := ent.NewClient(
+		ent.Log(logx.Info), // logger
+		ent.Driver(c.DatabaseConf.NewNoCacheDriver()),
+		ent.Debug(), // debug mode
+	)
 	return &ServiceContext{
-		Config:    c,
-		UserModel: usermodel.NewStormUserModel(mysql, c.Cache),
-		//DB: db,
+		Config:        c,
+		DB:            db,
+		ClientService: clientservice.NewClientService(zrpc.MustNewClient(c.SysRpc)),
 	}
 }

@@ -1,7 +1,6 @@
 package clientservicelogic
 
 import (
-	"code-storm/rpc/model/sysmodel"
 	"context"
 
 	"code-storm/rpc/sys/internal/svc"
@@ -25,12 +24,5 @@ func NewClientDeleteLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Clie
 }
 
 func (l *ClientDeleteLogic) ClientDelete(in *sysclient.DeleteClientReq) (*sysclient.DeleteClientResp, error) {
-	tx := l.svcCtx.DB.Delete(&sysmodel.Client{}, "id in ?", in.Ids)
-	if tx.Error != nil {
-		return nil, nil
-	}
-
-	return &sysclient.DeleteClientResp{
-		Data: "delete success",
-	}, nil
+	return nil, nil
 }
