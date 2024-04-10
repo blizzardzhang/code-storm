@@ -1,7 +1,6 @@
 package client
 
 import (
-	"code-storm/common/result"
 	"net/http"
 
 	"code-storm/api/internal/logic/sys/client"
@@ -10,21 +9,20 @@ import (
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-func ClientDeleteHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func ClientListHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.DeleteClientReq
+		var req types.ListClientReq
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := client.NewClientDeleteLogic(r.Context(), svcCtx)
-		resp, err := l.ClientDelete(&req)
-		/*if err != nil {
+		l := client.NewClientListLogic(r.Context(), svcCtx)
+		resp, err := l.ClientList(&req)
+		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {
 			httpx.OkJsonCtx(r.Context(), w, resp)
-		}*/
-		result.HttpResult(r, w, resp, err)
+		}
 	}
 }

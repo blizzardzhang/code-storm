@@ -1,4 +1,4 @@
-package user
+package client
 
 import (
 	"context"
@@ -9,21 +9,21 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type LoginLogic struct {
+type ClientAddLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
-	return &LoginLogic{
+func NewClientAddLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ClientAddLogic {
+	return &ClientAddLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResp, err error) {
+func (l *ClientAddLogic) ClientAdd(req *types.AddClientReq) (resp *types.AddClientResp, err error) {
 	// todo: add your logic here and delete this line
 
 	return

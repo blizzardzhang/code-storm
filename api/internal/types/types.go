@@ -58,6 +58,19 @@ type ListClientResp struct {
 	TotalPage int64        `json:"totalPage"`
 }
 
+type LoginRequest struct {
+	Account  string `json:"account"`
+	Password string `json:"password"`
+}
+
+type LoginResp struct {
+	Id           string `json:"id"`
+	Account      string `json:"userName"`
+	AccessToken  string `json:"accessToken"`
+	AccessExpire int64  `json:"accessExpire"`
+	RefreshAfter int64  `json:"refreshAfter"`
+}
+
 type UpdateClientReq struct {
 	Id     string `json:"id"`
 	Name   string `json:"name"`
@@ -67,19 +80,4 @@ type UpdateClientReq struct {
 
 type UpdateClientResp struct {
 	Data string `json:"data"`
-}
-
-type LoginRequest struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
-
-type LoginResp struct {
-	Status           string `json:"status"`
-	CurrentAuthority string `json:"currentAuthority"`
-	Id               int64  `json:"id"`
-	UserName         string `json:"userName"`
-	AccessToken      string `json:"token"`
-	AccessExpire     int64  `json:"accessExpire"`
-	RefreshAfter     int64  `json:"refreshAfter"`
 }

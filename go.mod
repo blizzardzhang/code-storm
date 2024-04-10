@@ -13,6 +13,7 @@ require (
 	github.com/shopspring/decimal v1.3.1
 	github.com/sony/sonyflake v1.2.0
 	github.com/zeromicro/go-zero v1.6.3
+	golang.org/x/crypto v0.22.0
 	google.golang.org/grpc v1.63.0
 	google.golang.org/protobuf v1.33.0
 	gorm.io/driver/mysql v1.5.6

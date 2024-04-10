@@ -28,7 +28,7 @@ func NewAppDeleteLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AppDele
 func (l *AppDeleteLogic) AppDelete(in *sysClient.DeleteAppReq) (*sysClient.DeleteAppResp, error) {
 	result := l.svcCtx.Db.Delete(&sys.App{}, in.Ids)
 	if result.Error != nil {
-		logx.Errorf("删除应用失败,err:%s", result.Error.Error())
+		return nil, result.Error
 	}
 	return &sysClient.DeleteAppResp{
 		Data: strconv.FormatInt(result.RowsAffected, 10),

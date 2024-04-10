@@ -1,6 +1,7 @@
 package appservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
 
 	"code-storm/rpc/sys/internal/svc"
@@ -24,7 +25,23 @@ func NewAppInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AppInfoLo
 }
 
 func (l *AppInfoLogic) AppInfo(in *sysClient.AppInfoReq) (*sysClient.AppInfoResp, error) {
-	// todo: add your logic here and delete this line
+	var app sys.App
+	result := l.svcCtx.Db.Find(&app, in.Id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
 
-	return &sysClient.AppInfoResp{}, nil
+	return &sysClient.AppInfoResp{
+		Id:                   app.Id,
+		AppId:                app.AppId,
+		Name:                 app.Name,
+		Secret:               app.Secret,
+		GrantType:            app.GrantType,
+		RedirectUri:          app.RedirectUri,
+		AdditionalInfo:       app.AdditionalInformation,
+		AccessTokenValidity:  app.AccessTokenValidity,
+		RefreshTokenValidity: app.RefreshTokenValidity,
+		CreateTime:           app.CreateAt.Format("2006-01-02 15:04:05"),
+		UpdateTime:           app.UpdateAt.Format("2006-01-02 15:04:05"),
+	}, nil
 }
