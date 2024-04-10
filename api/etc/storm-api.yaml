@@ -19,4 +19,4 @@ SysRpc:
 
 Auth:
   AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
-  AccessExpire: 86400
+  #AccessExpire: 86400 根据clientId来家在过期时间

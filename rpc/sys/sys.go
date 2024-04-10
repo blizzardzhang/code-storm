@@ -5,9 +5,13 @@ import (
 	"fmt"
 
 	"code-storm/rpc/sys/internal/config"
-	clientserviceServer "code-storm/rpc/sys/internal/server/clientservice"
+	appserviceServer "code-storm/rpc/sys/internal/server/appservice"
+	departmentserviceServer "code-storm/rpc/sys/internal/server/departmentservice"
+	permissionserviceServer "code-storm/rpc/sys/internal/server/permissionservice"
+	roleserviceServer "code-storm/rpc/sys/internal/server/roleservice"
+	userserviceServer "code-storm/rpc/sys/internal/server/userservice"
 	"code-storm/rpc/sys/internal/svc"
-	"code-storm/rpc/sys/sysclient"
+	"code-storm/rpc/sys/sysClient"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -16,7 +20,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "etc/sys.yaml", "the config file")
+var configFile = flag.String("f", "rpc/sys/etc/sys.yaml", "the config file")
 
 func main() {
 	flag.Parse()
@@ -26,7 +30,11 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		sysclient.RegisterClientServiceServer(grpcServer, clientserviceServer.NewClientServiceServer(ctx))
+		sysClient.RegisterUserServiceServer(grpcServer, userserviceServer.NewUserServiceServer(ctx))
+		sysClient.RegisterAppServiceServer(grpcServer, appserviceServer.NewAppServiceServer(ctx))
+		sysClient.RegisterDepartmentServiceServer(grpcServer, departmentserviceServer.NewDepartmentServiceServer(ctx))
+		sysClient.RegisterRoleServiceServer(grpcServer, roleserviceServer.NewRoleServiceServer(ctx))
+		sysClient.RegisterPermissionServiceServer(grpcServer, permissionserviceServer.NewPermissionServiceServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)

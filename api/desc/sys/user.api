@@ -1,0 +1,38 @@
+syntax = "v1"
+
+info(
+    title: "user service api"
+    desc: "user service api"
+    author: "Blizzard"
+    email: "blizzardzhang@icloud.com"
+    version: "0.0.1"
+)
+
+type (
+    loginRequest {
+        Username string `json:"username"`
+        password string `json:"password"`
+    }
+
+    loginResp {
+        Status string `json:"status"`
+        CurrentAuthority string `json:"currentAuthority"`
+        Id int64 `json:"id"`
+        UserName string `json:"userName"`
+        AccessToken string `json:"token"`
+        AccessExpire int64 `json:"accessExpire"`
+        RefreshAfter int64 `json:"refreshAfter"`
+    }
+)
+
+@server(
+    group: sys/user
+    prefix: /api/user
+)
+service storm-api {
+    @handler Login
+    post /login (loginRequest) returns (loginResp)
+}
+
+
+

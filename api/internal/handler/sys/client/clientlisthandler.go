@@ -1,7 +1,7 @@
 package client
 
 import (
-	"code-storm/common/response"
+	"code-storm/common/result"
 	"net/http"
 
 	"code-storm/api/internal/logic/sys/client"
@@ -25,6 +25,6 @@ func ClientListHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		} else {
 			httpx.OkJsonCtx(r.Context(), w, resp)
 		}*/
-		response.Result(r, w, resp, err)
+		result.HttpResult(r, w, resp, err)
 	}
 }

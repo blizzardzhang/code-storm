@@ -1,6 +1,6 @@
 syntax = "v1"
 
-import "user/user.api"
+import "sys/user.api"
 import "sys/client.api"
 
 info (
@@ -10,4 +10,4 @@ info (
 	email:  "blizzardzhang@icloud.com"
 )
 
-//goctl api go -api storm.api -dir ../
+//goctl api go -api storm.api -dir ../ --style goZero

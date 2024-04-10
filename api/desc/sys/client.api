@@ -79,21 +79,26 @@ type (
     jwt: Auth
     group: sys/client
     middleware: CheckUrl
-    prefix: /api/sys/client
+    prefix: /api/client
 )
 service storm-api {
+   // @doc "新增客户端"
     @handler ClientAdd
     post /add (AddClientReq) returns (AddClientResp)
 
+    //@doc "客户端分页"
     @handler ClientList
     post /list (ListClientReq) returns (ListClientResp)
 
+   // @doc "客户端详情""
     @handler ClientInfo
     get /info (ClientInfoReq) returns (ClientData)
 
+   // @doc "修改客户端"
     @handler ClientUpdate
     post /update (UpdateClientReq) returns (UpdateClientResp)
 
+   // @doc "删除客户端"
     @handler ClientDelete
     delete /delete (DeleteClientReq) returns (DeleteClientResp)
 }

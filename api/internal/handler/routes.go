@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	sysclient "code-storm/api/internal/handler/sys/client"
-	user "code-storm/api/internal/handler/user"
+	sysuser "code-storm/api/internal/handler/sys/user"
 	"code-storm/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -44,7 +44,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-		rest.WithPrefix("/api/sys/client"),
+		rest.WithPrefix("/api/client"),
 	)
 
 	server.AddRoutes(
@@ -52,7 +52,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodPost,
 				Path:    "/login",
-				Handler: user.LoginHandler(serverCtx),
+				Handler: sysuser.LoginHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/user"),

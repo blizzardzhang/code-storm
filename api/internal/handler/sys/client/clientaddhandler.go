@@ -1,7 +1,7 @@
 package client
 
 import (
-	"code-storm/common/response"
+	"code-storm/common/result"
 	"net/http"
 
 	"code-storm/api/internal/logic/sys/client"
@@ -20,6 +20,6 @@ func ClientAddHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		l := client.NewClientAddLogic(r.Context(), svcCtx)
 		resp, err := l.ClientAdd(&req)
-		response.Result(r, w, resp, err)
+		result.HttpResult(r, w, resp, err)
 	}
 }
