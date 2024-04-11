@@ -1,7 +1,10 @@
 package permissionservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
+	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
@@ -24,7 +27,30 @@ func NewPermissionDeleteLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *PermissionDeleteLogic) PermissionDelete(in *sysClient.DeletePermissionReq) (*sysClient.DeletePermissionResp, error) {
-	// todo: add your logic here and delete this line
+	ids := in.Ids
+	//1.判断是否存在下级
+	for _, id := range ids {
+		//1.判断是否有下级
+		var children []sys.Permission
+		tx := l.svcCtx.Db.Where("parent_id = ?", id).Find(&children)
+		if tx.Error != nil {
+			err := errors.New("查询权限下级失败:" + tx.Error.Error())
+			return nil, err
+		}
+		if len(children) > 0 {
+			err := errors.New("存在下级，无法删除")
+			return nil, err
+		}
 
-	return &sysClient.DeletePermissionResp{}, nil
+	}
+	//2.执行删除
+	result := l.svcCtx.Db.Delete(&sys.Permission{}, ids)
+	if result.Error != nil {
+		err := errors.New("删除permission失败: " + result.Error.Error())
+		return nil, err
+	}
+	affected := result.RowsAffected
+	return &sysClient.DeletePermissionResp{
+		Data: strconv.FormatInt(affected, 10),
+	}, nil
 }

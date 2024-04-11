@@ -1,7 +1,10 @@
 package roleservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
+	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
@@ -24,7 +27,21 @@ func NewRoleUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *RoleUp
 }
 
 func (l *RoleUpdateLogic) RoleUpdate(in *sysClient.UpdateRoleReq) (*sysClient.UpdateRoleResp, error) {
-	// todo: add your logic here and delete this line
+	updates := map[string]interface{}{
+		"type":   in.Type,
+		"name":   in.Name,
+		"code":   in.Code,
+		"sort":   in.Sort,
+		"remark": in.Remark,
+	}
+	var role sys.Role
+	result := l.svcCtx.Db.Model(&role).Where("id = ?", in.Id).Updates(updates)
+	if result.Error != nil {
+		err := errors.New("更新失败:" + result.Error.Error())
+		return nil, err
+	}
 
-	return &sysClient.UpdateRoleResp{}, nil
+	return &sysClient.UpdateRoleResp{
+		Data: strconv.FormatInt(result.RowsAffected, 10),
+	}, nil
 }

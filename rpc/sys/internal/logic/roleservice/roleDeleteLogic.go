@@ -1,7 +1,10 @@
 package roleservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
+	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
@@ -24,7 +27,13 @@ func NewRoleDeleteLogic(ctx context.Context, svcCtx *svc.ServiceContext) *RoleDe
 }
 
 func (l *RoleDeleteLogic) RoleDelete(in *sysClient.DeleteRoleReq) (*sysClient.DeleteRoleResp, error) {
-	// todo: add your logic here and delete this line
+	result := l.svcCtx.Db.Delete(&sys.Role{}, in.Ids)
+	if result.Error != nil {
+		err := errors.New("删除角色失败: " + result.Error.Error())
+		return nil, err
+	}
 
-	return &sysClient.DeleteRoleResp{}, nil
+	return &sysClient.DeleteRoleResp{
+		Data: strconv.FormatInt(result.RowsAffected, 10),
+	}, nil
 }

@@ -26,7 +26,7 @@ func NewAppInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AppInfoLo
 
 func (l *AppInfoLogic) AppInfo(in *sysClient.AppInfoReq) (*sysClient.AppInfoResp, error) {
 	var app sys.App
-	result := l.svcCtx.Db.Find(&app, in.Id)
+	result := l.svcCtx.Db.First(&app, "id = ?", in.Id)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -41,7 +41,8 @@ func (l *AppInfoLogic) AppInfo(in *sysClient.AppInfoReq) (*sysClient.AppInfoResp
 		AdditionalInfo:       app.AdditionalInformation,
 		AccessTokenValidity:  app.AccessTokenValidity,
 		RefreshTokenValidity: app.RefreshTokenValidity,
-		CreateTime:           app.CreateAt.Format("2006-01-02 15:04:05"),
-		UpdateTime:           app.UpdateAt.Format("2006-01-02 15:04:05"),
+		CreateAt:             app.CreateAt.Format("2006-01-02 15:04:05"),
+		UpdateAt:             app.UpdateAt.Format("2006-01-02 15:04:05"),
+		Status:               int64(app.Status),
 	}, nil
 }

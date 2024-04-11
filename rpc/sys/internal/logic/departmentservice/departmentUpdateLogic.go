@@ -1,7 +1,10 @@
 package departmentservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
+	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
@@ -24,7 +27,20 @@ func NewDepartmentUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *DepartmentUpdateLogic) DepartmentUpdate(in *sysClient.UpdateDepartmentReq) (*sysClient.UpdateDepartmentResp, error) {
-	// todo: add your logic here and delete this line
+	updates := map[string]interface{}{
+		"parent_id": in.ParentId,
+		"ancestors": in.Ancestors,
+		"name":      in.Name,
+		"sort":      in.Sort,
+	}
+	var department sys.Department
+	result := l.svcCtx.Db.Model(&department).Where("id = ?", in.Id).Updates(updates)
+	if result.Error != nil {
+		err := errors.New("更新失败:" + result.Error.Error())
+		return nil, err
+	}
 
-	return &sysClient.UpdateDepartmentResp{}, nil
+	return &sysClient.UpdateDepartmentResp{
+		Data: strconv.FormatInt(result.RowsAffected, 10),
+	}, nil
 }

@@ -3,6 +3,7 @@ package appservicelogic
 import (
 	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
 	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
@@ -40,7 +41,8 @@ func (l *AppUpdateLogic) AppUpdate(in *sysClient.UpdateAppReq) (*sysClient.Updat
 	var app sys.App
 	result := l.svcCtx.Db.Model(&app).Where("id = ?", in.Id).Updates(updates)
 	if result.Error != nil {
-		return nil, result.Error
+		err := errors.New("更新失败:" + result.Error.Error())
+		return nil, err
 	}
 
 	return &sysClient.UpdateAppResp{

@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	sysclient "code-storm/api/internal/handler/sys/client"
+	sysapp "code-storm/api/internal/handler/sys/app"
 	sysuser "code-storm/api/internal/handler/sys/user"
 	"code-storm/api/internal/svc"
 
@@ -19,32 +19,32 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodPost,
 					Path:    "/add",
-					Handler: sysclient.ClientAddHandler(serverCtx),
+					Handler: sysapp.AddAppHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodDelete,
+					Method:  http.MethodPost,
 					Path:    "/delete",
-					Handler: sysclient.ClientDeleteHandler(serverCtx),
+					Handler: sysapp.DeleteAppHandler(serverCtx),
 				},
 				{
-					Method:  http.MethodGet,
+					Method:  http.MethodPost,
 					Path:    "/info",
-					Handler: sysclient.ClientInfoHandler(serverCtx),
+					Handler: sysapp.AppInfoHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/list",
-					Handler: sysclient.ClientListHandler(serverCtx),
+					Handler: sysapp.ListAppHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/update",
-					Handler: sysclient.ClientUpdateHandler(serverCtx),
+					Handler: sysapp.UpdateAppHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-		rest.WithPrefix("/api/client"),
+		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
+		rest.WithPrefix("/api/sys/api"),
 	)
 
 	server.AddRoutes(
@@ -55,6 +55,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: sysuser.LoginHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/api/user"),
+		rest.WithPrefix("/api/sys/user"),
 	)
 }

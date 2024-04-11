@@ -9,7 +9,7 @@ type Config struct {
 	rest.RestConf
 	SysRpc zrpc.RpcClientConf
 
-	Auth struct {
+	JwtAuth struct {
 		AccessSecret string
 		AccessExpire int64
 	}

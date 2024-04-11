@@ -5,6 +5,7 @@ import (
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
 	"context"
+	"errors"
 	"github.com/zeromicro/go-zero/core/logx"
 	"strconv"
 )
@@ -24,6 +25,7 @@ func NewAppAddLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AppAddLogi
 }
 
 func (l *AppAddLogic) AppAdd(in *sysClient.AddAppReq) (*sysClient.AddAppResp, error) {
+	//userId := l.ctx.Value("userId")
 	app := sys.App{
 		Name:                  in.Name,
 		AppId:                 in.AppId,
@@ -37,7 +39,8 @@ func (l *AppAddLogic) AppAdd(in *sysClient.AddAppReq) (*sysClient.AddAppResp, er
 	}
 	result := l.svcCtx.Db.Create(&app) //指针数据
 	if result.Error != nil {
-		return nil, result.Error
+		err := errors.New("添加app失败:" + result.Error.Error())
+		return nil, err
 	}
 	affected := result.RowsAffected
 

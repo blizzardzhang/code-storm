@@ -45,8 +45,9 @@ func (l *AppListLogic) AppList(in *sysClient.ListAppReq) (*sysClient.ListAppResp
 			AdditionalInfo:       item.AdditionalInformation,
 			AccessTokenValidity:  item.AccessTokenValidity,
 			RefreshTokenValidity: item.RefreshTokenValidity,
-			CreateTime:           item.CreateAt.Format("2006-01-02 15:04:05"),
-			UpdateTime:           item.UpdateAt.Format("2006-01-02 15:04:05"),
+			CreateAt:             item.CreateAt.Format("2006-01-02 15:04:05"),
+			UpdateAt:             item.UpdateAt.Format("2006-01-02 15:04:05"),
+			Status:               int64(item.Status),
 		})
 	}
 	totalPages := (total + in.PageSize - 1) / in.PageSize // 使用向上取整的除法计算总页数

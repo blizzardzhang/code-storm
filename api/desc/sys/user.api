@@ -10,7 +10,8 @@ info(
 
 type (
     LoginRequest {
-        Account string `json:"account"`
+        appId string `json:"appId"`
+        account string `json:"account"`
         password string `json:"password"`
     }
 
@@ -25,7 +26,7 @@ type (
 
 @server(
     group: sys/user
-    prefix: /api/user
+    prefix: /api/sys/user
 )
 service storm-api {
     @handler Login

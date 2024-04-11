@@ -9,7 +9,7 @@ sysRpc:
       - 159.75.183.42:2379
     Key: sys.rpc
 
-Auth:
+JwtAuth:
   AccessSecret: ad879037-c7a4-4063-9236-6bfc35d54b7d
   AccessExpire: 86400
 
@@ -18,3 +18,4 @@ Log:
   Encoding: plain
   Stat: false
   TimeFormat: 2006-01-02 15:04:05
+  Level: info
