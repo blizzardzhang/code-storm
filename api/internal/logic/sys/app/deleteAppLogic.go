@@ -1,7 +1,7 @@
 package app
 
 import (
-	"code-storm/rpc/sys/sysClient"
+	"code-storm/rpc/sys/client/apprpc"
 	"context"
 
 	"code-storm/api/internal/svc"
@@ -25,7 +25,7 @@ func NewDeleteAppLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DeleteA
 }
 
 func (l *DeleteAppLogic) DeleteApp(req *types.DeleteAppReq) (resp *types.DeleteAppResp, err error) {
-	res, err := l.svcCtx.AppService.AppDelete(l.ctx, &sysClient.DeleteAppReq{
+	res, err := l.svcCtx.AppRpc.AppDelete(l.ctx, &apprpc.DeleteAppReq{
 		Ids: req.Ids,
 	})
 	if err != nil {

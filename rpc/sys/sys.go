@@ -5,11 +5,11 @@ import (
 	"fmt"
 
 	"code-storm/rpc/sys/internal/config"
-	appserviceServer "code-storm/rpc/sys/internal/server/appservice"
-	departmentserviceServer "code-storm/rpc/sys/internal/server/departmentservice"
-	permissionserviceServer "code-storm/rpc/sys/internal/server/permissionservice"
-	roleserviceServer "code-storm/rpc/sys/internal/server/roleservice"
-	userserviceServer "code-storm/rpc/sys/internal/server/userservice"
+	apprpcServer "code-storm/rpc/sys/internal/server/apprpc"
+	departmentrpcServer "code-storm/rpc/sys/internal/server/departmentrpc"
+	permissionrpcServer "code-storm/rpc/sys/internal/server/permissionrpc"
+	rolerpcServer "code-storm/rpc/sys/internal/server/rolerpc"
+	userrpcServer "code-storm/rpc/sys/internal/server/userrpc"
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
 
@@ -30,11 +30,11 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		sysClient.RegisterUserServiceServer(grpcServer, userserviceServer.NewUserServiceServer(ctx))
-		sysClient.RegisterAppServiceServer(grpcServer, appserviceServer.NewAppServiceServer(ctx))
-		sysClient.RegisterDepartmentServiceServer(grpcServer, departmentserviceServer.NewDepartmentServiceServer(ctx))
-		sysClient.RegisterRoleServiceServer(grpcServer, roleserviceServer.NewRoleServiceServer(ctx))
-		sysClient.RegisterPermissionServiceServer(grpcServer, permissionserviceServer.NewPermissionServiceServer(ctx))
+		sysClient.RegisterUserRpcServer(grpcServer, userrpcServer.NewUserRpcServer(ctx))
+		sysClient.RegisterAppRpcServer(grpcServer, apprpcServer.NewAppRpcServer(ctx))
+		sysClient.RegisterDepartmentRpcServer(grpcServer, departmentrpcServer.NewDepartmentRpcServer(ctx))
+		sysClient.RegisterRoleRpcServer(grpcServer, rolerpcServer.NewRoleRpcServer(ctx))
+		sysClient.RegisterPermissionRpcServer(grpcServer, permissionrpcServer.NewPermissionRpcServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)

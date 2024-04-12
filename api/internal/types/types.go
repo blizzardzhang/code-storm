@@ -17,7 +17,22 @@ type AddAppResp struct {
 	Data string `json:"data"`
 }
 
-type AppData struct {
+type AddDepartmentReq struct {
+	ParentId  string `json:"parentId"`
+	Ancestors string `json:"ancestors"`
+	Name      string `json:"name"`
+	Sort      int    `json:"sort"`
+}
+
+type AddDepartmentResp struct {
+	Data string `json:"data"`
+}
+
+type AppInfoReq struct {
+	Id string `json:"id"`
+}
+
+type AppInfoResp struct {
 	Id                    string `json:"id"`
 	Name                  string `json:"name"`
 	AppId                 string `json:"appId"`
@@ -29,13 +44,9 @@ type AppData struct {
 	AccessTokenValidity   int64  `json:"accessTokenValidity"`
 	CreateAt              string `json:"createAt"`
 	UpdateAt              string `json:"updateAt"`
-	Status                int64  `json:"status"`
+	Status                int    `json:"status"`
 	CreateUser            string `json:"createUser"`
 	UpdateUser            string `json:"updateUser"`
-}
-
-type AppInfoReq struct {
-	Id string `json:"id"`
 }
 
 type DeleteAppReq struct {
@@ -46,18 +57,77 @@ type DeleteAppResp struct {
 	Data string `json:"data"`
 }
 
+type DeleteDepartmentReq struct {
+	Ids []string `json:"ids"`
+}
+
+type DeleteDepartmentResp struct {
+	Data string `json:"data"`
+}
+
+type DeletePermissionReq struct {
+	Ids []string `json:"ids"`
+}
+
+type DeletePermissionResp struct {
+	Data string `json:"data"`
+}
+
+type DeleteUserReq struct {
+	Ids []string `json:"ids"`
+}
+
+type DeleteUserResp struct {
+	Data string `json:"data"`
+}
+
+type DepartmentInfoReq struct {
+	Id string `json:"id"`
+}
+
+type DepartmentInfoResp struct {
+	Id         string `json:"id"`
+	ParentId   string `json:"parentId"`
+	Ancestors  string `json:"ancestors"`
+	Name       string `json:"name"`
+	Sort       int    `json:"sort"`
+	CreateAt   string `json:"createAt"`
+	UpdateAt   string `json:"updateAt"`
+	CreateUser string `json:"createUser"`
+	UpdateUser string `json:"updateUser"`
+	Status     int    `json:"ststus"`
+}
+
 type ListAppReq struct {
-	Current  int64  `json:"current,default=1"`
-	PageSize int64  `json:"pageSize,default=10"`
+	Current  int    `json:"current,default=1"`
+	PageSize int    `json:"pageSize,default=10"`
 	Name     string `json:"name,optional"`
 }
 
 type ListAppResp struct {
-	Data      []AppData `json:"data"`
-	Current   int64     `json:"current"`
-	PageSize  int64     `json:"pageSize"`
-	Total     int64     `json:"total"`
-	TotalPage int64     `json:"totalPage"`
+	Records   []AppInfoResp `json:"records"`
+	Current   int           `json:"current"`
+	PageSize  int           `json:"pageSize"`
+	Total     int           `json:"total"`
+	TotalPage int           `json:"totalPage"`
+}
+
+type ListDepartmentReq struct {
+	Name string `json:"name"`
+}
+
+type ListDepartmentResp struct {
+	Records []DepartmentInfoResp `json:"records"`
+}
+
+type ListPermissionReq struct {
+	Name     string `json:"name"`
+	Code     string `json:"code"`
+	Category string `json:"category"`
+}
+
+type ListPermissionResp struct {
+	Records []PermissionDetailResp `json:"records"`
 }
 
 type LoginRequest struct {
@@ -72,6 +142,107 @@ type LoginResp struct {
 	AccessToken  string `json:"accessToken"`
 	AccessExpire int64  `json:"accessExpire"`
 	RefreshAfter int64  `json:"refreshAfter"`
+}
+
+type PermissionDetailReq struct {
+	Id string `json:"id"`
+}
+
+type PermissionDetailResp struct {
+	Id         string `json:"id"`
+	ParentId   string `json:"parentId"`
+	Name       string `json:"name"`
+	Code       string `json:"code"`
+	Component  string `json:"component"`
+	Icon       string `json:"icon"`
+	Path       string `json:"path"`
+	Sort       int    `json:"sort"`
+	Category   string `json:"category"`
+	CreateAt   string `json:"createAt"`
+	UpdateAt   string `json:"updateAt"`
+	CreateUser string `json:"createUser"`
+	UpdateUser string `json:"updateUser"`
+	Status     int    `json:"status"`
+}
+
+type RoleAddReq struct {
+	Type   int    `json:"type"`
+	Name   string `json:"name"`
+	Code   string `json:"code"`
+	Sort   int    `json:"sort"`
+	Remark string `json:"remark"`
+}
+
+type RoleAddResp struct {
+	Data string `json:"data"`
+}
+
+type RoleDeleteReq struct {
+	Ids []string `json:"ids"`
+}
+
+type RoleDeleteResp struct {
+	Data string `json:"data"`
+}
+
+type RoleInfoReq struct {
+	Id string `json:"id"`
+}
+
+type RoleInfoResp struct {
+	Id         string `json:"id"`
+	Type       int    `json:"type"`
+	Name       string `json:"name"`
+	Code       string `json:"code"`
+	Sort       int    `json:"sort"`
+	Remark     string `json:"remark"`
+	CreateAt   string `json:"createAt"`
+	UpdateAt   string `json:"updateAt"`
+	CreateUser string `json:"createUser"`
+	UpdateUser string `json:"updateUser"`
+	Status     int    `json:"status"`
+}
+
+type RoleListReq struct {
+	Current  int    `json:"current"`
+	PageSize int    `json:"page_size"`
+	Name     string `json:"name"`
+}
+
+type RoleListResp struct {
+	Records   []RoleInfoResp `json:"records"`
+	Current   int            `json:"current"`
+	PageSize  int            `json:"pageSize"`
+	Total     int            `json:"total"`
+	TotalPage int            `json:"totalPage"`
+}
+
+type RoleUpdateReq struct {
+	Id     string `json:"id"`
+	Type   int    `json:"type"`
+	Name   string `json:"name"`
+	Code   string `json:"code"`
+	Sort   int    `json:"sort"`
+	Remark string `json:"remark"`
+}
+
+type RoleUpdateResp struct {
+	Data string `json:"data"`
+}
+
+type SavePermissionReq struct {
+	ParentId  string `json:"parentId"`
+	Name      string `json:"name"`
+	Code      string `json:"code"`
+	Component string `json:"component"`
+	Icon      string `json:"icon"`
+	Path      string `json:"path"`
+	Sort      int    `json:"sort"`
+	Category  string `json:"category"`
+}
+
+type SavePermissionResp struct {
+	Data string `json:"data"`
 }
 
 type UpdateAppReq struct {
@@ -89,4 +260,83 @@ type UpdateAppReq struct {
 
 type UpdateAppResp struct {
 	Data string `json:"data"`
+}
+
+type UpdateDepartmentReq struct {
+	Id        string `json:"id"`
+	ParentId  string `json:"parentId"`
+	Ancestors string `json:"ancestors"`
+	Name      string `json:"name"`
+	Sort      int    `json:"sort"`
+}
+
+type UpdateDepartmentResp struct {
+	Data string `json:"data"`
+}
+
+type UpdatePermissionReq struct {
+	Id        string `json:"id"`
+	ParentId  string `json:"parentId"`
+	Name      string `json:"name"`
+	Code      string `json:"code"`
+	Component string `json:"component"`
+	Icon      string `json:"icon"`
+	Path      string `json:"path"`
+	Sort      int    `json:"sort"`
+	Category  string `json:"category"`
+}
+
+type UpdatePermissionResp struct {
+	Data string `json:"data"`
+}
+
+type UpdateUserReq struct {
+	Id           string `json:"id"`
+	AppId        string `json:"appId"`
+	DepartmentId string `json:"departmentId"`
+	Account      string `json:"account"`
+	Name         string `json:"name"`
+	NickName     string `json:"nickName"`
+	Phone        string `json:"phone"`
+	Status       int    `json:"status"`
+}
+
+type UpdateUserResp struct {
+	Data string `json:"data"`
+}
+
+type UserInfo struct {
+	Id           string `json:"id"`
+	AppId        string `json:"appId"`
+	DepartmentId string `json:"departmentId"`
+	Account      string `json:"account"`
+	Name         string `json:"name"`
+	NickName     string `json:"nickName"`
+	Phone        string `json:"phone"`
+	CreateAt     string `json:"createAt"`
+	UpdateAt     string `json:"updateAt"`
+	CreateUser   string `json:"createUser"`
+	UpdateUser   string `json:"updateUser"`
+	Status       int    `json:"status"`
+}
+
+type UserInfoReq struct {
+	Id string `json:"id"`
+}
+
+type UserPageReq struct {
+	AppId    string `json:"appId"`
+	Account  string `json:"account"`
+	Phone    string `json:"phone"`
+	Name     string `json:"name"`
+	Current  int    `json:"current"`
+	PageSize int    `json:"pageSize"`
+}
+
+type UserPageResp struct {
+	Records   []UserInfo `json:"records"`
+	Current   int        `json:"current"`
+	PageSize  int        `json:"pageSize"`
+	Total     int        `json:"total"`
+	TotalPage int        `json:"totalPage"`
 }

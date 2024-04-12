@@ -13,5 +13,5 @@ info (
 	email:  "blizzardzhang@icloud.com"
 )
 
-    //生成api代码 goctl api go -api storm.api -dir ../ --style goZero
-    //生成文档 goctl api plugin -plugin goctl-swagger="swagger -filename storm.json" -api storm.api -dir ./doc
+	//生成api代码 goctl api go -api storm.api -dir ../ --style goZero
+	//生成文档 goctl api plugin -plugin goctl-swagger="swagger -filename storm.json" -api storm.api -dir ./doc

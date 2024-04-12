@@ -16,7 +16,7 @@ type (
     }
     LoginResp {
         Id string `json:"id"`
-        Account string `json:"userName"`
+        Account string `json:"account"`
         AccessToken string `json:"accessToken"`
         AccessExpire int64 `json:"accessExpire"`
         RefreshAfter int64 `json:"refreshAfter"`
@@ -49,7 +49,7 @@ type (
         PageSize int `json:"pageSize"`
     }
     UserPageResp {
-        Data []UserInfo `json:"list"`
+        Records []UserInfo `json:"records"`
         Current int `json:"current"`
         PageSize int `json:"pageSize"`
         Total int `json:"total"`

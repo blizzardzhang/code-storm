@@ -1,7 +1,7 @@
 package app
 
 import (
-	"code-storm/rpc/sys/sysClient"
+	"code-storm/rpc/sys/client/apprpc"
 	"context"
 	"github.com/jinzhu/copier"
 
@@ -26,25 +26,25 @@ func NewListAppLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListAppLo
 }
 
 func (l *ListAppLogic) ListApp(req *types.ListAppReq) (resp *types.ListAppResp, err error) {
-	res, err := l.svcCtx.AppService.AppList(l.ctx, &sysClient.ListAppReq{
-		Current:  req.Current,
-		PageSize: req.PageSize,
+	res, err := l.svcCtx.AppRpc.AppList(l.ctx, &apprpc.ListAppReq{
+		Current:  int64(req.Current),
+		PageSize: int64(req.PageSize),
 		Name:     req.Name,
 	})
 	if err != nil {
 		return nil, err
 	}
-	var list []types.AppData
+	var list []types.AppInfoResp
 	for _, item := range res.List {
-		var app types.AppData
-		_ = copier.Copy(&app, &item)
+		var app types.AppInfoResp
+		_ = copier.Copy(&app, item)
 		list = append(list, app)
 	}
 	return &types.ListAppResp{
-		Data:      list,
-		Current:   res.Current,
-		PageSize:  res.PageSize,
-		Total:     res.Total,
-		TotalPage: res.TotalPage,
+		Records:   list,
+		Current:   int(res.Current),
+		PageSize:  int(res.PageSize),
+		Total:     int(res.Total),
+		TotalPage: int(res.TotalPage),
 	}, nil
 }

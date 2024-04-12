@@ -39,7 +39,7 @@ message UserListResp {
   repeated UserInfo list = 2;
 }
 
-service UserService {
+service UserRpc {
 
   rpc Login(LoginReq) returns(LoginResp);
   rpc GetUserList(UserListReq) returns(UserListResp);
@@ -119,7 +119,7 @@ message DeleteAppResp{
   string data = 1;
 }
 
-service AppService {
+service AppRpc {
   rpc AppAdd(AddAppReq) returns (AddAppResp);
   rpc AppInfo(AppInfoReq) returns (AppInfoResp);
   rpc AppList(ListAppReq) returns (ListAppResp);
@@ -180,7 +180,7 @@ message DeleteDepartmentResp{
   string data = 1;
 }
 
-service DepartmentService {
+service DepartmentRpc {
   rpc DepartmentAdd(AddDepartmentReq) returns (AddDepartmentResp);
   rpc DepartmentInfo(DepartmentInfoReq) returns (DepartmentInfoResp);
   rpc DepartmentList(ListDepartmentReq) returns (ListDepartmentResp);
@@ -250,7 +250,7 @@ message DeleteRoleResp{
   string data = 1;
 }
 
-service RoleService {
+service RoleRpc {
   rpc RoleAdd(AddRoleReq) returns (AddRoleResp);
   rpc RoleInfo(RoleInfoReq) returns (RoleInfoResp);
   rpc RoleList(ListRoleReq) returns (ListRoleResp);
@@ -297,6 +297,8 @@ message PermissionInfoResp{
 
 message ListPermissionReq{
   string name = 1;
+  string category = 2;
+  string code = 3;
 }
 message ListPermissionResp{
   repeated PermissionInfoResp list = 1;
@@ -324,7 +326,7 @@ message DeletePermissionResp{
   string data = 1;
 }
 
-service PermissionService {
+service PermissionRpc {
   rpc PermissionAdd(AddPermissionReq) returns (AddPermissionResp);
   rpc PermissionInfo(PermissionInfoReq) returns (PermissionInfoResp);
   rpc PermissionList(ListPermissionReq) returns (ListPermissionResp);

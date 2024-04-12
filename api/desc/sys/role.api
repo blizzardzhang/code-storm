@@ -31,10 +31,10 @@ type (
         Code string `json:"code"`
         Sort int `json:"sort"`
         Remark string `json:"remark"`
-        CreateAt string `json:"create_at"`
-        UpdateAt string `json:"update_at"`
-        CreateUser string `json:"create_user"`
-        UpdateUser string `json:"update_user"`
+        CreateAt string `json:"createAt"`
+        UpdateAt string `json:"updateAt"`
+        CreateUser string `json:"createUser"`
+        UpdateUser string `json:"updateUser"`
         Status int `json:"status"`
     }
 
@@ -44,7 +44,7 @@ type (
         Name string `json:"name"`
     }
     RoleListResp {
-        Data []RoleInfoResp `json:"data"`
+        Records []RoleInfoResp `json:"records"`
         Current int `json:"current"`
         PageSize int `json:"pageSize"`
         Total int `json:"total"`

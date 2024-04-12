@@ -29,3 +29,5 @@ func main() {
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
 }
+
+// # 生成dockerfile 进入api目录 goctl docker --go storm.go --exe storm

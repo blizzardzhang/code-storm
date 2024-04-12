@@ -1,7 +1,7 @@
 package app
 
 import (
-	"code-storm/rpc/sys/sysClient"
+	"code-storm/rpc/sys/client/apprpc"
 	"context"
 
 	"code-storm/api/internal/svc"
@@ -25,7 +25,7 @@ func NewUpdateAppLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateA
 }
 
 func (l *UpdateAppLogic) UpdateApp(req *types.UpdateAppReq) (resp *types.UpdateAppResp, err error) {
-	res, err := l.svcCtx.AppService.AppUpdate(l.ctx, &sysClient.UpdateAppReq{
+	res, err := l.svcCtx.AppRpc.AppUpdate(l.ctx, &apprpc.UpdateAppReq{
 		Id:                  req.Id,
 		Name:                req.Name,
 		GrantType:           req.GrantType,

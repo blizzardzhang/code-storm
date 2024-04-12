@@ -5,6 +5,9 @@ import (
 	"net/http"
 
 	sysapp "code-storm/api/internal/handler/sys/app"
+	sysdepartment "code-storm/api/internal/handler/sys/department"
+	syspermission "code-storm/api/internal/handler/sys/permission"
+	sysrole "code-storm/api/internal/handler/sys/role"
 	sysuser "code-storm/api/internal/handler/sys/user"
 	"code-storm/api/internal/svc"
 
@@ -18,23 +21,23 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
-					Path:    "/add",
-					Handler: sysapp.AddAppHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
 					Path:    "/delete",
 					Handler: sysapp.DeleteAppHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/info",
-					Handler: sysapp.AppInfoHandler(serverCtx),
+					Handler: sysapp.AppDetailHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/list",
 					Handler: sysapp.ListAppHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/save",
+					Handler: sysapp.SaveAppHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodPost,
@@ -44,7 +47,112 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
-		rest.WithPrefix("/api/sys/api"),
+		rest.WithPrefix("/api/sys/app"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CheckUrl},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/delete",
+					Handler: sysdepartment.DeleteDepartmentHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/detail",
+					Handler: sysdepartment.DepartmentInfoHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/list",
+					Handler: sysdepartment.ListDepartmentHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/save",
+					Handler: sysdepartment.AddDepartmentHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/update",
+					Handler: sysdepartment.UpdateDepartmentHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
+		rest.WithPrefix("/api/sys/department"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CheckUrl},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/delete",
+					Handler: syspermission.DeletePermissionHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/detail",
+					Handler: syspermission.PermissionDetailHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/list",
+					Handler: syspermission.ListPermissionHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/save",
+					Handler: syspermission.SavePermissionHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/update",
+					Handler: syspermission.UpdatePermissionHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
+		rest.WithPrefix("/api/sys/permisssion"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CheckUrl},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/delete",
+					Handler: sysrole.DeleteRoleHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/detail",
+					Handler: sysrole.GetRoleHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/list",
+					Handler: sysrole.ListRoleHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/save",
+					Handler: sysrole.SaveRoleHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/update",
+					Handler: sysrole.UpdateRoleHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
+		rest.WithPrefix("/api/sys/role"),
 	)
 
 	server.AddRoutes(
@@ -55,6 +163,36 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: sysuser.LoginHandler(serverCtx),
 			},
 		},
+		rest.WithPrefix("/api/sys/user"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.CheckUrl},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/delete",
+					Handler: sysuser.DeleteUserHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/info",
+					Handler: sysuser.UserInfoHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/page",
+					Handler: sysuser.UserPageHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/update",
+					Handler: sysuser.UpdateUserHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
 		rest.WithPrefix("/api/sys/user"),
 	)
 }

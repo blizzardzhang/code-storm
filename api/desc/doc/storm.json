@@ -1,0 +1,2040 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "code-storm",
+    "description": "code-storm gateway",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/sys/app/delete": {
+      "post": {
+        "operationId": "DeleteApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteAppResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteAppReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/app"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/app/info": {
+      "post": {
+        "operationId": "AppDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AppInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/app"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/app/list": {
+      "post": {
+        "operationId": "ListApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListAppResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListAppReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/app"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/app/save": {
+      "post": {
+        "operationId": "SaveApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddAppResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddAppReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/app"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/app/update": {
+      "post": {
+        "operationId": "UpdateApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateAppResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAppReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/app"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/department/delete": {
+      "post": {
+        "operationId": "DeleteDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteDepartmentResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteDepartmentReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/department"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/department/detail": {
+      "post": {
+        "operationId": "DepartmentInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DepartmentInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DepartmentInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/department"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/department/list": {
+      "post": {
+        "operationId": "ListDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDepartmentResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListDepartmentReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/department"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/department/save": {
+      "post": {
+        "operationId": "AddDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddDepartmentResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddDepartmentReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/department"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/department/update": {
+      "post": {
+        "operationId": "UpdateDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateDepartmentResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDepartmentReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/department"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/permisssion/delete": {
+      "post": {
+        "operationId": "DeletePermission",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeletePermissionResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeletePermissionReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/permission"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/permisssion/detail": {
+      "post": {
+        "operationId": "PermissionDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/PermissionDetailResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PermissionDetailReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/permission"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/permisssion/list": {
+      "post": {
+        "operationId": "ListPermission",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListPermissionResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListPermissionReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/permission"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/permisssion/save": {
+      "post": {
+        "operationId": "SavePermission",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SavePermissionResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SavePermissionReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/permission"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/permisssion/update": {
+      "post": {
+        "operationId": "UpdatePermission",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePermissionResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePermissionReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/permission"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/role/delete": {
+      "post": {
+        "operationId": "DeleteRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleDeleteResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleDeleteReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/role/detail": {
+      "post": {
+        "operationId": "GetRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/role/list": {
+      "post": {
+        "operationId": "ListRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleListReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/role/save": {
+      "post": {
+        "operationId": "SaveRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleAddResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/role/update": {
+      "post": {
+        "operationId": "UpdateRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleUpdateResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleUpdateReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/role"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/user/delete": {
+      "post": {
+        "operationId": "DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/user"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/user/info": {
+      "post": {
+        "operationId": "UserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserInfo"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/user"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/user/login": {
+      "post": {
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LoginResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "sys/user"
+        ]
+      }
+    },
+    "/api/sys/user/page": {
+      "post": {
+        "operationId": "UserPage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserPageResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserPageReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/user"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/api/sys/user/update": {
+      "post": {
+        "operationId": "UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "sys/user"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddAppReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "grantType": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string"
+        },
+        "additionalInformation": {
+          "type": "string"
+        },
+        "accessTokenValidity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refreshTokenValidity": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AddAppReq",
+      "required": [
+        "name",
+        "appId",
+        "key",
+        "secret",
+        "grantType",
+        "redirectUri",
+        "additionalInformation",
+        "accessTokenValidity",
+        "refreshTokenValidity"
+      ]
+    },
+    "AddAppResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "AddAppResp",
+      "required": [
+        "data"
+      ]
+    },
+    "AddDepartmentReq": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string"
+        },
+        "ancestors": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "AddDepartmentReq",
+      "required": [
+        "parentId",
+        "ancestors",
+        "name",
+        "sort"
+      ]
+    },
+    "AddDepartmentResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "AddDepartmentResp",
+      "required": [
+        "data"
+      ]
+    },
+    "AppInfoReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "AppInfoReq",
+      "required": [
+        "id"
+      ]
+    },
+    "AppInfoResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "grantType": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string"
+        },
+        "additionalInformation": {
+          "type": "string"
+        },
+        "accessTokenValidity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "updateAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createUser": {
+          "type": "string"
+        },
+        "updateUser": {
+          "type": "string"
+        }
+      },
+      "title": "AppInfoResp",
+      "required": [
+        "id",
+        "name",
+        "appId",
+        "key",
+        "secret",
+        "grantType",
+        "redirectUri",
+        "additionalInformation",
+        "accessTokenValidity",
+        "createAt",
+        "updateAt",
+        "status",
+        "createUser",
+        "updateUser"
+      ]
+    },
+    "DeleteAppReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "DeleteAppReq",
+      "required": [
+        "ids"
+      ]
+    },
+    "DeleteAppResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteAppResp",
+      "required": [
+        "data"
+      ]
+    },
+    "DeleteDepartmentReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "DeleteDepartmentReq",
+      "required": [
+        "ids"
+      ]
+    },
+    "DeleteDepartmentResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteDepartmentResp",
+      "required": [
+        "data"
+      ]
+    },
+    "DeletePermissionReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "DeletePermissionReq",
+      "required": [
+        "ids"
+      ]
+    },
+    "DeletePermissionResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "DeletePermissionResp",
+      "required": [
+        "data"
+      ]
+    },
+    "DeleteUserReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "DeleteUserReq",
+      "required": [
+        "ids"
+      ]
+    },
+    "DeleteUserResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteUserResp",
+      "required": [
+        "data"
+      ]
+    },
+    "DepartmentInfoReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "DepartmentInfoReq",
+      "required": [
+        "id"
+      ]
+    },
+    "DepartmentInfoResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "ancestors": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "updateAt": {
+          "type": "string"
+        },
+        "createUser": {
+          "type": "string"
+        },
+        "updateUser": {
+          "type": "string"
+        },
+        "ststus": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "DepartmentInfoResp",
+      "required": [
+        "id",
+        "parentId",
+        "ancestors",
+        "name",
+        "sort",
+        "createAt",
+        "updateAt",
+        "createUser",
+        "updateUser",
+        "ststus"
+      ]
+    },
+    "ListAppReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int32",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32",
+          "default": "10"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ListAppReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListAppResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppInfoResp"
+          }
+        },
+        "current": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ListAppResp",
+      "required": [
+        "data",
+        "current",
+        "pageSize",
+        "total",
+        "totalPage"
+      ]
+    },
+    "ListDepartmentReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ListDepartmentReq",
+      "required": [
+        "name"
+      ]
+    },
+    "ListDepartmentResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DepartmentInfoResp"
+          }
+        }
+      },
+      "title": "ListDepartmentResp",
+      "required": [
+        "data"
+      ]
+    },
+    "ListPermissionReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        }
+      },
+      "title": "ListPermissionReq",
+      "required": [
+        "name",
+        "code",
+        "category"
+      ]
+    },
+    "ListPermissionResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PermissionDetailResp"
+          }
+        }
+      },
+      "title": "ListPermissionResp",
+      "required": [
+        "data"
+      ]
+    },
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "LoginRequest",
+      "required": [
+        "appId",
+        "account",
+        "password"
+      ]
+    },
+    "LoginResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessExpire": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refreshAfter": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "LoginResp",
+      "required": [
+        "id",
+        "userName",
+        "accessToken",
+        "accessExpire",
+        "refreshAfter"
+      ]
+    },
+    "PermissionDetailReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "PermissionDetailReq",
+      "required": [
+        "id"
+      ]
+    },
+    "PermissionDetailResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "updateAt": {
+          "type": "string"
+        },
+        "createUser": {
+          "type": "string"
+        },
+        "updateUser": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "PermissionDetailResp",
+      "required": [
+        "id",
+        "parentId",
+        "name",
+        "code",
+        "component",
+        "icon",
+        "path",
+        "sort",
+        "category",
+        "createAt",
+        "updateAt",
+        "createUser",
+        "updateUser",
+        "status"
+      ]
+    },
+    "RoleAddReq": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "RoleAddReq",
+      "required": [
+        "type",
+        "name",
+        "code",
+        "sort",
+        "remark"
+      ]
+    },
+    "RoleAddResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "RoleAddResp",
+      "required": [
+        "data"
+      ]
+    },
+    "RoleDeleteReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "RoleDeleteReq",
+      "required": [
+        "ids"
+      ]
+    },
+    "RoleDeleteResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "RoleDeleteResp",
+      "required": [
+        "data"
+      ]
+    },
+    "RoleInfoReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "RoleInfoReq",
+      "required": [
+        "id"
+      ]
+    },
+    "RoleInfoResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "updateAt": {
+          "type": "string"
+        },
+        "createUser": {
+          "type": "string"
+        },
+        "updateUser": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "RoleInfoResp",
+      "required": [
+        "id",
+        "type",
+        "name",
+        "code",
+        "sort",
+        "remark",
+        "createAt",
+        "updateAt",
+        "createUser",
+        "updateUser",
+        "status"
+      ]
+    },
+    "RoleListReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "RoleListReq",
+      "required": [
+        "current",
+        "page_size",
+        "name"
+      ]
+    },
+    "RoleListResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleInfoResp"
+          }
+        },
+        "current": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "RoleListResp",
+      "required": [
+        "data",
+        "current",
+        "pageSize",
+        "total",
+        "totalPage"
+      ]
+    },
+    "RoleUpdateReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "RoleUpdateReq",
+      "required": [
+        "id",
+        "type",
+        "name",
+        "code",
+        "sort",
+        "remark"
+      ]
+    },
+    "RoleUpdateResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "RoleUpdateResp",
+      "required": [
+        "data"
+      ]
+    },
+    "SavePermissionReq": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "type": "string"
+        }
+      },
+      "title": "SavePermissionReq",
+      "required": [
+        "parentId",
+        "name",
+        "code",
+        "component",
+        "icon",
+        "path",
+        "sort",
+        "category"
+      ]
+    },
+    "SavePermissionResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "SavePermissionResp",
+      "required": [
+        "data"
+      ]
+    },
+    "UpdateAppReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "grantType": {
+          "type": "string"
+        },
+        "redirectUri": {
+          "type": "string"
+        },
+        "additionalInformation": {
+          "type": "string"
+        },
+        "accessTokenValidity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateAppReq",
+      "required": [
+        "id",
+        "name",
+        "appId",
+        "key",
+        "secret",
+        "grantType",
+        "redirectUri",
+        "additionalInformation",
+        "accessTokenValidity",
+        "status"
+      ]
+    },
+    "UpdateAppResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateAppResp",
+      "required": [
+        "data"
+      ]
+    },
+    "UpdateDepartmentReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "ancestors": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdateDepartmentReq",
+      "required": [
+        "id",
+        "parentId",
+        "ancestors",
+        "name",
+        "sort"
+      ]
+    },
+    "UpdateDepartmentResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateDepartmentResp",
+      "required": [
+        "data"
+      ]
+    },
+    "UpdatePermissionReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePermissionReq",
+      "required": [
+        "id",
+        "parentId",
+        "name",
+        "code",
+        "component",
+        "icon",
+        "path",
+        "sort",
+        "category"
+      ]
+    },
+    "UpdatePermissionResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePermissionResp",
+      "required": [
+        "data"
+      ]
+    },
+    "UpdateUserReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdateUserReq",
+      "required": [
+        "id",
+        "appId",
+        "departmentId",
+        "account",
+        "name",
+        "nickName",
+        "phone",
+        "status"
+      ]
+    },
+    "UpdateUserResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateUserResp",
+      "required": [
+        "data"
+      ]
+    },
+    "UserInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "updateAt": {
+          "type": "string"
+        },
+        "createUser": {
+          "type": "string"
+        },
+        "updateUser": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UserInfo",
+      "required": [
+        "id",
+        "appId",
+        "departmentId",
+        "account",
+        "name",
+        "nickName",
+        "phone",
+        "createAt",
+        "updateAt",
+        "createUser",
+        "updateUser",
+        "status"
+      ]
+    },
+    "UserInfoReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "UserInfoReq",
+      "required": [
+        "id"
+      ]
+    },
+    "UserPageReq": {
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "current": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UserPageReq",
+      "required": [
+        "appId",
+        "account",
+        "phone",
+        "name",
+        "current",
+        "pageSize"
+      ]
+    },
+    "UserPageResp": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserInfo"
+          }
+        },
+        "current": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalPage": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UserPageResp",
+      "required": [
+        "list",
+        "current",
+        "pageSize",
+        "total",
+        "totalPage"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

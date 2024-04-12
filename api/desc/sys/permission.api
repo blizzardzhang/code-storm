@@ -50,7 +50,7 @@ type (
         Category string `json:"category"`
     }
     ListPermissionResp {
-        Data []PermissionDetailResp `json:"data"`
+        Records []PermissionDetailResp `json:"records"`
     }
 
     UpdatePermissionReq {

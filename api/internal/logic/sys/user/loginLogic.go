@@ -3,7 +3,7 @@ package user
 import (
 	"code-storm/api/internal/svc"
 	"code-storm/api/internal/types"
-	"code-storm/rpc/sys/client/userservice"
+	"code-storm/rpc/sys/client/userrpc"
 	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -24,7 +24,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResp, err error) {
-	res, err := l.svcCtx.UserService.Login(l.ctx, &userservice.LoginReq{
+	res, err := l.svcCtx.UserRpc.Login(l.ctx, &userrpc.LoginReq{
 		AppId:    req.AppId,
 		Account:  req.Account,
 		Password: req.Password,

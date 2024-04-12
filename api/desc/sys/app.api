@@ -50,7 +50,7 @@ type (
         Name string `json:"name,optional"`
     }
     ListAppResp {
-        Data []AppInfoResp `json:"data"`
+        Records []AppInfoResp `json:"records"`
         Current int `json:"current"`
         PageSize int `json:"pageSize"`
         Total int `json:"total"`

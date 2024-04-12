@@ -14,7 +14,7 @@ type (
         ParentId string `json:"parentId"`
         Ancestors string `json:"ancestors"`
         Name string `json:"name"`
-        Sort string `json:"sort"`
+        Sort int `json:"sort"`
     }
     AddDepartmentResp {
         Data string `json:"data"`
@@ -28,7 +28,7 @@ type (
         ParentId string `json:"parentId"`
         Ancestors string `json:"ancestors"`
         Name string `json:"name"`
-        Sort string `json:"sort"`
+        Sort int `json:"sort"`
         CreateAt string `json:"createAt"`
         UpdateAt string `json:"updateAt"`
         CreateUser string `json:"createUser"`
@@ -40,7 +40,7 @@ type (
         Name string `json:"name"`
     }
     ListDepartmentResp {
-        Data []DepartmentInfoResp `json:"data"`
+        Records []DepartmentInfoResp `json:"records"`
     }
 
     UpdateDepartmentReq {
@@ -48,7 +48,7 @@ type (
         ParentId string `json:"parentId"`
         Ancestors string `json:"ancestors"`
         Name string `json:"name"`
-        Sort string `json:"sort"`
+        Sort int `json:"sort"`
     }
     UpdateDepartmentResp {
         Data string `json:"data"`
