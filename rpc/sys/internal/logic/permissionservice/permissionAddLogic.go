@@ -1,7 +1,10 @@
 package permissionservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
+	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
@@ -24,7 +27,24 @@ func NewPermissionAddLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Per
 }
 
 func (l *PermissionAddLogic) PermissionAdd(in *sysClient.AddPermissionReq) (*sysClient.AddPermissionResp, error) {
-	// todo: add your logic here and delete this line
+	permission := sys.Permission{
+		ParentId:  in.ParentId,
+		Name:      in.Name,
+		Code:      in.Code,
+		Component: in.Component,
+		Icon:      in.Icon,
+		Path:      in.Path,
+		Sort:      int(in.Sort),
+		Category:  in.Category,
+	}
+	result := l.svcCtx.Db.Create(&permission)
+	if result.Error != nil {
+		err := errors.New("添加department失败:" + result.Error.Error())
+		return nil, err
+	}
+	affected := result.RowsAffected
 
-	return &sysClient.AddPermissionResp{}, nil
+	return &sysClient.AddPermissionResp{
+		Data: strconv.FormatInt(affected, 10),
+	}, nil
 }

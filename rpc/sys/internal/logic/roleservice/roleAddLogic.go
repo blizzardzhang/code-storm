@@ -1,7 +1,10 @@
 package roleservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
+	"errors"
+	"strconv"
 
 	"code-storm/rpc/sys/internal/svc"
 	"code-storm/rpc/sys/sysClient"
@@ -24,7 +27,20 @@ func NewRoleAddLogic(ctx context.Context, svcCtx *svc.ServiceContext) *RoleAddLo
 }
 
 func (l *RoleAddLogic) RoleAdd(in *sysClient.AddRoleReq) (*sysClient.AddRoleResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &sysClient.AddRoleResp{}, nil
+	role := sys.Role{
+		Type:   int(in.Type),
+		Name:   in.Name,
+		Code:   in.Code,
+		Sort:   int(in.Sort),
+		Remark: in.Remark,
+	}
+	result := l.svcCtx.Db.Create(&role) //指针数据
+	if result.Error != nil {
+		err := errors.New("添加失败:" + result.Error.Error())
+		return nil, err
+	}
+	affected := result.RowsAffected
+	return &sysClient.AddRoleResp{
+		Data: strconv.FormatInt(affected, 10),
+	}, nil
 }

@@ -1,6 +1,7 @@
 package permissionservicelogic
 
 import (
+	"code-storm/rpc/model/sys"
 	"context"
 
 	"code-storm/rpc/sys/internal/svc"
@@ -24,7 +25,32 @@ func NewPermissionListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Pe
 }
 
 func (l *PermissionListLogic) PermissionList(in *sysClient.ListPermissionReq) (*sysClient.ListPermissionResp, error) {
-	// todo: add your logic here and delete this line
+	var permissions []sys.Permission
+	if err := l.svcCtx.Db.Find(&permissions).Error; err != nil {
+		return nil, err
+	}
 
-	return &sysClient.ListPermissionResp{}, nil
+	var result []*sysClient.PermissionInfoResp
+	for _, permission := range permissions {
+		result = append(result, &sysClient.PermissionInfoResp{
+			Id:         permission.Id,
+			Icon:       permission.Icon,
+			Path:       permission.Path,
+			Sort:       int64(permission.Sort),
+			Category:   permission.Category,
+			ParentId:   permission.ParentId,
+			Name:       permission.Name,
+			Code:       permission.Code,
+			Component:  permission.Component,
+			Status:     int64(permission.Status),
+			CreateUser: permission.CreateBy,
+			UpdateUser: permission.UpdateBy,
+			CreateAt:   permission.CreateAt.Format("2006-01-02 15:04:05"),
+			UpdateAt:   permission.UpdateAt.Format("2006-01-02 15:04:05"),
+		})
+	}
+
+	return &sysClient.ListPermissionResp{
+		List: result,
+	}, nil
 }

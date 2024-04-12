@@ -1,6 +1,7 @@
 package sys
 
 import (
+	"code-storm/common/uniqueid"
 	"gorm.io/gorm"
 	"time"
 )
@@ -25,6 +26,20 @@ type Model struct {
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
+// BeforeCreate 定义一个钩子，在创建之前执行自动插入字段
+func (model Model) BeforeCreate(db *gorm.DB) (err error) {
+	db.Statement.SetColumn("Id", uniqueid.GenIdStr())
+	db.Statement.SetColumn("CreateAt", time.Now())
+	db.Statement.SetColumn("UpdateAt", time.Now())
+	return
+}
+
+// BeforeUpdate 定义一个钩子，在更新之前执行自动更新字段
+func (model Model) BeforeUpdate(db *gorm.DB) (err error) {
+	db.Statement.SetColumn("UpdateAt", time.Now())
+	return
+}
+
 // User user
 type User struct {
 	Model
@@ -33,7 +48,7 @@ type User struct {
 	Account  string `gorm:"size:32;unique;" json:"account" form:"account"`
 	Name     string `gorm:"size:50;" json:"name" form:"name"`
 	Nickname string `gorm:"size:50;" json:"nickname" form:"nickname"`
-	Password string `gorm:"size:50" json:"password" form:"password"`
+	Password string `gorm:"size:100" json:"password" form:"password"`
 	Phone    string `gorm:"size:20;" json:"phone" form:"phone"`
 }
 
