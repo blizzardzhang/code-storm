@@ -10,11 +10,10 @@ info(
 
 type (
     LoginRequest {
-        appId string `json:"appId"`
-        account string `json:"account"`
-        password string `json:"password"`
+        AppId string `json:"appId"`
+        Account string `json:"account"`
+        Password string `json:"password"`
     }
-
     LoginResp {
         Id string `json:"id"`
         Account string `json:"userName"`
@@ -22,8 +21,64 @@ type (
         AccessExpire int64 `json:"accessExpire"`
         RefreshAfter int64 `json:"refreshAfter"`
     }
+
+    UserInfoReq {
+        Id string `json:"id"`
+    }
+    UserInfo {
+        Id string `json:"id"`
+        AppId string `json:"appId"`
+        DepartmentId string `json:"departmentId"`
+        Account string `json:"account"`
+        Name string `json:"name"`
+        NickName string `json:"nickName"`
+        Phone string `json:"phone"`
+        CreateAt string `json:"createAt"`
+        UpdateAt string `json:"updateAt"`
+        CreateUser string `json:"createUser"`
+        UpdateUser string `json:"updateUser"`
+        Status int `json:"status"`
+    }
+
+    UserPageReq {
+        AppId string `json:"appId"`
+        Account string `json:"account"`
+        Phone string `json:"phone"`
+        Name string `json:"name"`
+        Current int `json:"current"`
+        PageSize int `json:"pageSize"`
+    }
+    UserPageResp {
+        Data []UserInfo `json:"list"`
+        Current int `json:"current"`
+        PageSize int `json:"pageSize"`
+        Total int `json:"total"`
+        TotalPage int `json:"totalPage"`
+    }
+
+    UpdateUserReq {
+        Id string `json:"id"`
+        AppId string `json:"appId"`
+        DepartmentId string `json:"departmentId"`
+        Account string `json:"account"`
+        Name string `json:"name"`
+        NickName string `json:"nickName"`
+        Phone string `json:"phone"`
+        Status int `json:"status"`
+    }
+    UpdateUserResp {
+        Data string `json:"data"`
+    }
+
+    DeleteUserReq {
+        Ids []string `json:"ids"`
+    }
+    DeleteUserResp {
+        Data string `json:"data"`
+    }
 )
 
+//no need login
 @server(
     group: sys/user
     prefix: /api/sys/user
@@ -31,6 +86,27 @@ type (
 service storm-api {
     @handler Login
         post /login (LoginRequest) returns (LoginResp)
+}
+
+//need login
+@server(
+    jwt: JwtAuth
+    group: sys/user
+    middleware: CheckUrl
+    prefix: /api/sys/user
+)
+service storm-api {
+    @handler UserInfo
+    post /info (UserInfoReq) returns (UserInfo)
+
+    @handler UserPage
+    post /page (UserPageReq) returns (UserPageResp)
+
+    @handler UpdateUser
+    post /update (UpdateUserReq) returns (UpdateUserResp)
+
+    @handler DeleteUser
+    post /delete (DeleteUserReq) returns (DeleteUserResp)
 }
 
 

@@ -1,8 +1,8 @@
 syntax = "v1"
 
 info(
-    title: "user service api"
-    desc: "user service api"
+    title: "app service api"
+    desc: "app service api"
     author: "Blizzard"
     email: "blizzardzhang@icloud.com"
     version: "0.0.1"
@@ -27,8 +27,7 @@ type (
     AppInfoReq {
         Id string `json:"id"`
     }
-
-    AppData {
+    AppInfoResp {
         Id string `json:"id"`
         Name string `json:"name"`
         AppId string `json:"appId"`
@@ -40,22 +39,22 @@ type (
         AccessTokenValidity int64 `json:"accessTokenValidity"`
         CreateAt string `json:"createAt"`
         UpdateAt string `json:"updateAt"`
-        Status int64 `json:"status"`
+        Status int `json:"status"`
         CreateUser string `json:"createUser"`
         UpdateUser string `json:"updateUser"`
     }
 
     ListAppReq {
-        Current int64 `json:"current,default=1"`
-        PageSize int64 `json:"pageSize,default=10"`
+        Current int `json:"current,default=1"`
+        PageSize int `json:"pageSize,default=10"`
         Name string `json:"name,optional"`
     }
     ListAppResp {
-        Data []AppData `json:"data"`
-        Current int64 `json:"current"`
-        PageSize int64 `json:"pageSize"`
-        Total int64 `json:"total"`
-        TotalPage int64 `json:"totalPage"`
+        Data []AppInfoResp `json:"data"`
+        Current int `json:"current"`
+        PageSize int `json:"pageSize"`
+        Total int `json:"total"`
+        TotalPage int `json:"totalPage"`
     }
 
     UpdateAppReq {
@@ -88,20 +87,20 @@ type (
     jwt: JwtAuth
     group: sys/app
     middleware: CheckUrl
-    prefix: /api/sys/api
+    prefix: /api/sys/app
 )
 service storm-api {
     // @doc "新增客户端"
-    @handler AddApp
-    post /add (AddAppReq) returns (AddAppResp)
+    @handler SaveApp
+    post /save (AddAppReq) returns (AddAppResp)
 
     //@doc "客户端分页"
     @handler ListApp
     post /list (ListAppReq) returns (ListAppResp)
 
     // @doc "客户端详情""
-    @handler AppInfo
-    post /info (AppInfoReq) returns (AppData)
+    @handler AppDetail
+    post /info (AppInfoReq) returns (AppInfoResp)
 
     // @doc "修改客户端"
     @handler UpdateApp
